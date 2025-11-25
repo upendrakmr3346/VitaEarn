@@ -1,1 +1,1 @@
-Placeholder for test folder.
+Placeholder for web folder.
