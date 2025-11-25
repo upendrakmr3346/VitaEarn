@@ -1,1 +1,1 @@
-Placeholder for linux folder.
+Placeholder for macos folder.
