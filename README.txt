@@ -1,1 +1,1 @@
-Placeholder for web folder.
+Placeholder for windows folder.
