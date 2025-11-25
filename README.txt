@@ -1,1 +1,1 @@
-Placeholder for ios folder.
+Placeholder for linux folder.
