@@ -1,8 +1,8 @@
-.github/workflows/unzip.yml
 name: Unzip Flutter Project
 
 on:
-  push:
+  workflow_dispatch:   # enables "Run workflow" button
+  push:                # still runs on push if needed
     branches:
       - main
 
@@ -13,28 +13,25 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
-        with:
-          fetch-depth: 0
 
-      - name: Install unzip
-        run: sudo apt-get install unzip -y
+      - name: List files (debug)
+        run: ls -R .
 
-      - name: Remove old extracted folder if exists
-        run: rm -rf flutter_project_clean
-
-      - name: Unzip project
-        run: unzip flutter_project_clean.zip -d .
-
-      - name: Remove zip file after extraction
-        run: rm flutter_project_clean.zip
-
-      - name: Commit extracted project
+      - name: Unzip flutter_project_clean.zip
         run: |
-          git config --local user.email "actions@github.com"
-          git config --local user.name "GitHub Actions"
+          mkdir project
+          unzip flutter_project_clean.zip -d project
+
+      - name: Move files to root
+        run: |
+          cp -r project/* .
+          rm -rf project
+
+      - name: Commit unzipped files
+        run: |
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git add .
-          git commit -m "Auto-unzip Flutter project" || echo "No changes to commit"
-
-      - name: Push changes
-        run: |
-          git push origin main
+          git commit -m "Unzipped project" || echo "Nothing to commit"
+          git push
+          
