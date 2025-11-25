@@ -1,1 +1,1 @@
-Placeholder for assets folder.
+Placeholder for ios folder.
