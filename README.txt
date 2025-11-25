@@ -1,1 +1,1 @@
-Placeholder for android folder.
+Placeholder for assets folder.
